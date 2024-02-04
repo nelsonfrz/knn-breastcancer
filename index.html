@@ -1,40 +1,932 @@
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>reveal.js</title>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<link rel="stylesheet" href="dist/reset.css">
-		<link rel="stylesheet" href="dist/reveal.css">
-		<link rel="stylesheet" href="dist/theme/black.css">
+	<title>reveal.js</title>
 
-		<!-- Theme used for syntax highlighted code -->
-		<link rel="stylesheet" href="plugin/highlight/monokai.css">
-	</head>
-	<body>
-		<div class="reveal">
-			<div class="slides">
-				<section>Slide 1</section>
-				<section>Slide 2</section>
-			</div>
+	<link rel="stylesheet" href="dist/reset.css">
+	<link rel="stylesheet" href="dist/reveal.css">
+	<link rel="stylesheet" href="dist/theme/white.css">
+
+	<!-- Theme used for syntax highlighted code -->
+	<link rel="stylesheet" href="plugin/highlight/atom-one-dark.css">
+</head>
+
+<body>
+	<div class="reveal">
+		<div class="slides">
+			<section>
+				<h2>k-Nearest-Neighbors Algorithmus</h2>
+				<p>Nelson Fritz</p>
+			</section>
+
+			<section>
+				<h3>Ziele dieses Vortrags</h3>
+
+				<section data-auto-animate>
+				</section>
+				<section data-auto-animate>
+					<ul>
+						<li>Einstieg in K.I. bzw. Machine Learning</li>
+					</ul>
+
+					<aside class="notes">
+						Einstieg in das sehr aktuelle Thema Künstliche Intelligenz bzw. dem maschinellen lernens engl. Machine
+						Learning,
+						weil:
+						<ul>
+							<li>Publikum sind angehende ITler => Grundlagen in K.I. werden in Karriere helfen</li>
+							<li>Thema K.I. im Bildungsplan</li>
+						</ul>
+					</aside>
+				</section>
+				<section data-auto-animate>
+					<ul>
+						<li>Einstieg in K.I. bzw. Machine Learning</li>
+						<li>Erklärung des k-Nearest-Neighbors (k-NN) Algorithmus</li>
+					</ul>
+
+					<aside class="notes">
+						Erklärung des k-Nearest-Neighbors kurz k-NN Algorithmus, aufgrund der:
+						<ul>
+							<li>Einfachheit => perfekter Einstieg in maschinelles Lernens</li>
+							<li>k-NN im Abitur</li>
+						</ul>
+					</aside>
+				</section>
+				<section data-auto-animate>
+					<ul>
+						<li>Einstieg in K.I. bzw. Machine Learning</li>
+						<li>Erklärung des k-Nearest-Neighbors (k-NN) Algorithmus</li>
+						<li>Vorstellung eines Anwendungsbeispiels: Brustkrebs Diagnose mit k-NN </li>
+					</ul>
+					<aside class="notes">
+						Vorstellung eines Anwendungsbeispiels und zwar eine eigenentwickelte Brustkrebs Diagnose mit k-NN, weil
+						<ul>
+							<li>Möglichkeiten des k-NN veranschaulichen</li>
+							<li>Interesse wecken</li>
+						</ul>
+					</aside>
+				</section>
+			</section>
+
+			<section>
+				<h3>Inhalt dieses Vortrags</h3>
+				<section data-auto-animate>
+				</section>
+				<section data-auto-animate>
+					<ol>
+						<li>Grundlagen des maschinellen Lernens</li>
+					</ol>
+				</section>
+				<section data-auto-animate>
+					<ol>
+						<li>Grundlagen des maschinellen Lernens</li>
+						<li>Einführung in den k-Nearest-Neighbors Algorithmus</li>
+					</ol>
+				</section>
+				<section data-auto-animate>
+					<ol>
+						<li>Grundlagen des maschinellen Lernens</li>
+						<li>Einführung in den k-Nearest-Neighbors Algorithmus</li>
+						<li>Distanzmetriken</li>
+					</ol>
+				</section>
+				<section data-auto-animate>
+					<ol>
+						<li>Grundlagen des maschinellen Lernens</li>
+						<li>Einführung in den k-Nearest-Neighbors Algorithmus</li>
+						<li>Distanzmetriken</li>
+						<li>Bestimmung der Genauigkeit</li>
+					</ol>
+				</section>
+				<section data-auto-animate>
+					<ol>
+						<li>Grundlagen des maschinellen Lernens</li>
+						<li>Einführung in den k-Nearest-Neighbors Algorithmus</li>
+						<li>Distanzmetriken</li>
+						<li>Bestimmung der Genauigkeit</li>
+						<li>Bestimmung des Parameters k</li>
+					</ol>
+				</section>
+				<section data-auto-animate>
+					<ol>
+						<li>Grundlagen des maschinellen Lernens</li>
+						<li>Einführung in den k-Nearest-Neighbors Algorithmus</li>
+						<li>Distanzmetriken</li>
+						<li>Bestimmung der Genauigkeit</li>
+						<li>Bestimmung des Parameters k</li>
+						<li>Vorstellung eines Anwendungsbeispiels: Brustkrebs Diagnose</li>
+					</ol>
+				</section>
+				<section data-auto-animate>
+					<ol>
+						<li>Grundlagen des maschinellen Lernens</li>
+						<li>Einführung in den k-Nearest-Neighbors Algorithmus</li>
+						<li>Distanzmetriken</li>
+						<li>Bestimmung der Genauigkeit</li>
+						<li>Bestimmung des Parameters k</li>
+						<li>Vorstellung eines Anwendungsbeispiels: Brustkrebs Diagnose</li>
+						<li>Vor- und Nachteile des Algorithmus</li>
+					</ol>
+				</section>
+				<section data-auto-animate>
+					<ol>
+						<li>Grundlagen des maschinellen Lernens</li>
+						<li>Einführung in den k-Nearest-Neighbors Algorithmus</li>
+						<li>Distanzmetriken</li>
+						<li>Bestimmung der Genauigkeit</li>
+						<li>Bestimmung des Parameters k</li>
+						<li>Vorstellung eines Anwendungsbeispiels: Brustkrebs Diagnose</li>
+						<li>Vor- und Nachteile des Algorithmus</li>
+						<li>Fazit</li>
+					</ol>
+				</section>
+			</section>
+
+			<section>
+				<section>
+					<h3>Grundlagen des maschinellen Lernens</h3>
+					<aside class="notes">
+						<ul>
+							<li>Maschinelles Lernen ist ein Bereich der künstlichen Intelligenz, der es Systemen ermöglicht, aus
+								Daten automatisch zu lernen, um in ihnen Muster und Zusammenhänge zu erkennen, ohne explizite
+								Programmierung</li>
+							<li>Die identifizierten Muster und Zusammenhänge können auf neuen Datensätzen
+								angewendet werden, um Vorhersagen zu treffen</li>
+						</ul>
+					</aside>
+				</section>
+
+				<section>
+					<img src="assets/with_without_ml.jpeg">
+				</section>
+				<section>
+					<img src="assets/trad_vs_ml.png">
+				</section>
+
+				<section data-auto-animate>
+					<div style="display: flex; flex-direction: row; gap: 50px; justify-content: center;">
+						<h4>Überwachtes Lernen (supervised learning) </h4>
+						<h4>Unüberwachtes Lernen (unsupervised learning) </h4>
+					</div>
+
+					<aside class="notes">
+						Dabei lässt sich maschinelles Lernen in zwei Arten unterteilen: Überwachtes und unüberwachtes Lernen
+					</aside>
+				</section>
+				<section data-auto-animate>
+					<div style="display: flex; flex-direction: row; gap: 50px; justify-content: center;">
+						<div>
+							<h4>Überwachtes Lernen (supervised learning) </h4>
+							<ul>
+								<li>Vorhersage über neue Daten basierend auf vorhandenen Daten mit Labels</li>
+							</ul>
+						</div>
+						<h4>Unüberwachtes Lernen (unsupervised learning) </h4>
+					</div>
+
+					<aside class="notes">
+						<ul>
+							<li>Hierbei können Vorhersagen über neue, bisher unbekannte Daten getroffen
+								werden, basierend auf vorhandenen Daten, die mit den dazugehörigen Ergebnisse (Labels) versehen sind
+							</li>
+							<li>Klassifikations- und Regressionsalgorithmen sind Beispiele für Überwachtes Lernen,
+								wobei Klassifikation die Zuordnung von einem Element zu einer bestimmten Klasse und Regression die
+								Vorhersage von stetigen Werten ist</li>
+						</ul>
+					</aside>
+				</section>
+				<section data-auto-animate>
+					<div style="display: flex; flex-direction: row; gap: 50px; justify-content: center;">
+						<div>
+							<h4>Überwachtes Lernen (supervised learning) </h4>
+							<ul>
+								<li>Vorhersage über neue Daten basierend auf vorhandenen Daten mit Labels</li>
+								<li>Beispiele: Klassifikation und Regression</li>
+							</ul>
+						</div>
+						<h4>Unüberwachtes Lernen (unsupervised learning) </h4>
+					</div>
+
+					<aside class="notes">
+						<ul>
+							<li>Hierbei können Vorhersagen über neue, bisher unbekannte Daten getroffen
+								werden, basierend auf vorhandenen Daten, die mit den dazugehörigen Ergebnisse (Labels) versehen sind
+							</li>
+							<li>Klassifikations- und Regressionsalgorithmen sind Beispiele für Überwachtes Lernen,
+								wobei Klassifikation die Zuordnung von einem Element zu einer bestimmten Klasse und Regression die
+								Vorhersage von stetigen Werten ist</li>
+						</ul>
+					</aside>
+				</section>
+				<section data-auto-animate>
+					<div style="display: flex; flex-direction: row; gap: 50px; justify-content: center;">
+						<div>
+							<h4>Überwachtes Lernen (supervised learning) </h4>
+							<ul>
+								<li>Vorhersage über neue Daten basierend auf vorhandenen Daten mit Labels</li>
+								<li>Beispiele: Klassifikation und Regression</li>
+							</ul>
+						</div>
+						<div>
+							<h4>Unüberwachtes Lernen (unsupervised learning) </h4>
+							<ul>
+								<li>Vorhersage der Labels von Daten nur mit Features</li>
+							</ul>
+						</div>
+					</div>
+
+					<aside class="notes">
+						<ul>
+							<li>Im Unterschied zum überwachten Lernen liegen nur die Eigenschaften der Daten
+								(Features), aber nicht die dazugehörigen Ergebnisse (Labels) vor. Also bei unüberwachtem Lernen
+								versuchen Algorithmen, diese Ergebnisse (Labels) selbstständig zu generieren </li>
+						</ul>
+					</aside>
+				</section>
+				<section data-auto-animate>
+					<div style="display: flex; flex-direction: row; gap: 50px; justify-content: center;">
+						<div>
+							<h4>Überwachtes Lernen (supervised learning) </h4>
+							<ul>
+								<li>Vorhersage über neue Daten basierend auf vorhandenen Daten mit Labels</li>
+								<li>Beispiele: Klassifikation und Regression</li>
+							</ul>
+						</div>
+						<div>
+							<h4>Unüberwachtes Lernen (unsupervised learning) </h4>
+							<ul>
+								<li>Vorhersage der Labels von Daten nur mit Features</li>
+								<li>Beispiel: Clustering</li>
+							</ul>
+						</div>
+					</div>
+
+					<aside class="notes">
+						<ul>
+							<li>Im Unterschied zum überwachten Lernen liegen nur die Eigenschaften der Daten
+								(Features), aber nicht die dazugehörigen Ergebnisse (Labels) vor. Also bei unüberwachtem Lernen
+								versuchen Algorithmen, diese Ergebnisse (Labels) selbstständig zu generieren </li>
+							<li>Clustering fasst ähnliche Daten in die gleiche Gruppen</li>
+						</ul>
+					</aside>
+				</section>
+
+				<section data-auto-animate>
+					<div style="display: flex; flex-direction: row; gap: 100px; justify-content: center;">
+						<div>
+							<h4>Parametrisch</h4>
+							<ul>
+							</ul>
+						</div>
+						<div>
+							<h4>Nichtparametrisch</h4>
+							<ul>
+							</ul>
+						</div>
+					</div>
+
+					<aside class="notes">
+						Zusätzlich kann maschinelles Lernen nach der Parametrisierung der Modelle unterschieden werden.
+					</aside>
+				</section>
+
+				<section data-auto-animate>
+					<div style="display: flex; flex-direction: row; gap: 50px; justify-content: center;">
+						<div>
+							<h4>Parametrisch</h4>
+							<ul>
+								<li>Voraussetzung von zugrundeliegende statistische Verteilungen in Daten</li>
+							</ul>
+						</div>
+						<div>
+							<h4>Nichtparametrisch</h4>
+							<ul>
+							</ul>
+						</div>
+					</div>
+
+					<aside class="notes">
+						<ul>
+							<li>Parametrisch
+								bedeutet, dass zugrundeliegende statistische Verteilungen in den Daten vorausgesetzt werden, wie
+								beispielsweise eine Normalverteilung</li>
+							<li>
+								Nichtparametrisch bedeutet, dass keine zugrundeliegenden
+								statistischen Verteilungen in den Daten vorausgesetzt werde
+							</li>
+						</ul>
+					</aside>
+				</section>
+				<section data-auto-animate>
+					<div style="display: flex; flex-direction: row; gap: 50px; justify-content: center;">
+						<div>
+							<h4>Parametrisch</h4>
+							<ul>
+								<li>Voraussetzung von zugrundeliegende statistische Verteilungen in Daten</li>
+							</ul>
+						</div>
+						<div>
+							<h4>Nichtparametrisch</h4>
+							<ul>
+								<li>Keine Voraussetzung von zugrundeliegende statistische Verteilungen in Daten</li>
+							</ul>
+						</div>
+					</div>
+
+					<aside class="notes">
+						<ul>
+							<li>Parametrisch
+								bedeutet, dass zugrundeliegende statistische Verteilungen in den Daten vorausgesetzt werden, wie
+								beispielsweise eine Normalverteilung</li>
+							<li>
+								Nichtparametrisch bedeutet, dass keine zugrundeliegenden
+								statistischen Verteilungen in den Daten vorausgesetzt werde
+							</li>
+						</ul>
+					</aside>
+				</section>
+			</section>
+
+			<section>
+				<section>
+					<h3>Einführung in den k-Nearest-Neighbors Algorithmus</h3>
+				</section>
+
+				<section>
+					<h3>Definition</h3>
+					Der $k$-Nearest-Neighbors-Algorithmus, auch als $k$-NN bezeichnet, ist ein nichtparametrischer, überwachter
+					Klassifikator, der das Konzept der Nähe nutzt, um Vorhersagen über die Klasse eines einzelnen Datenpunktes zu
+					treffen.
+
+					<aside class="notes">
+						<ul>
+							<li>Abfrage des Verständnis des Publikums</li>
+						</ul>
+					</aside>
+				</section>
+
+				<section>
+					<img src="assets/knn_not_classified.png">
+
+					<aside class="notes">
+						Intuitive Erklärung des k-NN
+						<ul>
+							<li>Abfrage der Gruppe vom Publikum und wieso?</li>
+						</ul>
+					</aside>
+				</section>
+				<section>
+					<img src="assets/knn_classified.png">
+
+					<aside class="notes">
+						Intuitive Erklärung des k-NN
+						<ul>
+							<li>k-NN basiert auf der Idee, dass naheliegende Datenpunkte dazu tendieren, zur gleichen Klasse zu
+								gehören</li>
+							<li>bei der Klassifikation eines unklassifizierten Datenpunktes berechnet k-NN die Distanz zu allen
+								klassifizierten
+								Datenpunkten im Datensatz mithilfe einer Distanzmetrik</li>
+							<li>Der unklassifizierte Datenpunkt wird dann nach der am häufigsten vorkommenden Klasse der $k$ am
+								nächsten liegenden klassifizierten Datenpunkte klassifiziert</li>
+						</ul>
+					</aside>
+				</section>
+				<section>
+					<img src="assets/knn_classified_2.png">
+				</section>
+				<section>
+					<h3>Zusammenfassung des Algorithmus</h3>
+					<ol>
+						<li><strong>Schritt:</strong> Wähle die Anzahl <em>k</em> der nächsten Nachbarn aus.</li>
+						<li><strong>Schritt:</strong> Berechne die Distanz vom nicht klassifizierten Punkt zu allen klassifizierten
+							Punkten.</li>
+						<li><strong>Schritt:</strong> Nimm die <em>k</em> nächsten Nachbarn gemäß der berechneten Distanz.</li>
+						<li><strong>Schritt:</strong> Zähle unter diesen <em>k</em> Nachbarn die Anzahl der Punkte, die zu jeder
+							Klasse gehören.</li>
+						<li><strong>Schritt:</strong> Ordne den neuen Punkt der Klasse zu, die unter diesen <em>k</em> Nachbarn am
+							häufigsten vertreten ist.</li>
+					</ol>
+				</section>
+			</section>
+
+			<section>
+				<section>
+					<h3>Distanzmetriken</h3>
+
+					<aside class="notes">
+						<ul>
+							<li>Die Distanzmetrik berechnet die Distanz zwischen zwei Datenpunkte</li>
+							<li>Um den Algorithmus auf einem bestimmten Datensatz optimal zu nutzen, müssen wir eine geeignete
+								Distanzmetrik entsprechend auswählen</li>
+							<li>Es gibt viele verschiedene Distanzmetriken zur Verfügung, aber im
+								Folgenden werden nur die drei gängigsten vorgestellt</li>
+						</ul>
+					</aside>
+				</section>
+
+				<section data-auto-animate>
+					<h3>Summenzeichen</h3>
+					$$\sum_{i=1}^{n} i$$
+
+					<aside class="notes">
+						<ul>
+							<li>Sigma = Summe</li>
+							<li>i = Laufvariable</li>
+							<li>n = Endwert</li>
+							<li>Funktion die von der Laufvariable abhängt</li>
+						</ul>
+					</aside>
+				</section>
+				<section data-auto-animate>
+					$$\sum_{i=1}^{3} i$$
+				</section>
+				<section data-auto-animate>
+					$$\sum_{i=1}^{3} i=1+2+3=6$$
+				</section>
+				<section data-auto-animate>
+					$$\sum_{i=1}^{3} i=1+2+3=6$$
+
+					<pre><code data-trim data-noescape data-line-numbers>
+						int summe = 0;
+
+						for (int i = 1; i &#60;= 3; i++) {
+							summe = summe + i;
+						}
+					</code></pre>
+				</section>
+
+				<section data-auto-animate>
+					$$\mathbf{q}=(q_0, q_1, q_2)=(3,3,3)$$
+					$$\sum_{i=0}^{2} q_i=q_0+q_1+q_2=3+3+3=9$$
+				</section>
+
+				<section data-auto-animate>
+					$$\mathbf{q}=(q_0, q_1, q_2)=(3,3,3)$$
+					$$\sum_{i=0}^{2} q_i=q_0+q_1+q_2=3+3+3=9$$
+
+					<pre><code data-trim data-noescape data-line-numbers>
+						int[] q = {3, 3, 3};
+						int summe = 0;
+
+						for (int i = 0; i &#60;= 2; i++) {
+							summe = summe + q[i];
+						}
+					</code></pre>
+				</section>
+
+				<section>
+					<h3>Euklidische Distanz</h3>
+
+					<img src="assets/euclidian_distance.png">
+
+					<aside class="notes">
+						<ul>
+							<li>Die wohl einfachte Distanzmetrik ist die euklidische Distanz</li>
+							<li>Verallgemeinerung des Satz des Pythagoras</li>
+							<li>Es ist die kürzeste Strecke zwischen zwei Punkten</li>
+						</ul>
+					</aside>
+				</section>
+
+				<section>
+					$$\text{dist}(q, x_i) = \sqrt{ \sum_{j=1}^{n} (q_j - x_{ij})^2 }$$
+
+					<aside class="notes">
+						<ul>
+							<li>q ist ein neuer Datenpunkt</li>
+							<li>x_i ist ein Trainingsdatenpunkt</li>
+							<li>n ist die Anzahl an Merkmalen</li>
+						</ul>
+					</aside>
+				</section>
+
+				<section>
+					$$\mathbf{q}=(q_1, q_2)=(1,1) \quad x_i=(x_{i_1}, x_{i_2})=(2,3)$$
+
+					$$\text{dist}(q, x_i) =\sqrt{ \sum_{j=1}^{2} (q_j - x_{ij})^2 }$$
+					$$= \sqrt{ (q_1 - x_{i_1})^2 + (q_2 - x_{i_2})^2 }$$
+					$$ = \sqrt{ (1 - 2)^2 + (1 - 3)^2 }=\sqrt{5}$$
+
+					<aside class="notes">
+						<ul>
+							<li>q ist ein neuer Datenpunkt</li>
+							<li>x_i ist ein Trainingsdatenpunkt</li>
+							<li>n ist die Anzahl an Merkmalen</li>
+						</ul>
+					</aside>
+				</section>
+
+				<section>
+					<h3>Manhattan Distanz</h3>
+					<img src="assets/manhattan_distance.png">
+
+					<aside class="notes">
+						<ul>
+							<li>Manhattan Distanz misst absoluten Abstand zwischen zwei Punkten</li>
+							<li>Diese Metrik ist auch als ”Taxidistanz” oder ”Stadtblock-Distanz” bekannt,
+								da sie typischerweise durch ein Raster dargestellt wird, das zeigt, wie man sich durch die Straßen
+								einer Stadt von einer Adresse zur anderen bewegen kan</li>
+						</ul>
+					</aside>
+				</section>
+				<section>
+					$$
+					\text{dist}(q, x_i) = \sum_{j=1}^{n} |q_j - x_{ij}|
+					$$
+				</section>
+				<section>
+					$$\mathbf{q}=(q_1, q_2)=(1,1) \quad x_i=(x_{i_1}, x_{i_2})=(2,3)$$
+
+					$$\text{dist}(q, x_i) = \sum_{j=1}^{2} |q_j - x_{ij}|$$
+					$$= |q_1 - x_{i_1}| + |q_2 - x_{i_2}| $$
+					$$ = |1 - 2| + |1 - 3|=|-1|+|-2|=3$$
+
+					<aside class="notes">
+						<ul>
+							<li>q ist ein neuer Datenpunkt</li>
+							<li>x_i ist ein Trainingsdatenpunkt</li>
+							<li>n ist die Anzahl an Merkmalen</li>
+						</ul>
+					</aside>
+				</section>
+
+				<section>
+					<h3>Minkowski Distanz</h3>
+					$$
+					\text{dist}(q, x_i) = \Biggl( \sum_{j=1}^{n} |q_j - x_{ij}|^p \Biggr)^{\frac{1}{p}}
+					$$
+
+					<aside class="notes">
+						<ul>
+							<li>verallgemeinerte Form der euklidischen und Manhattan-Distanzmetriken</li>
+							<li>Der Parameter $p$ ermöglicht die Variation und Entwicklung weiterer Abstandsmetriken</li>
+							<li>Der euklidische
+								Abstand wird durch diese Minkowski Distanz repräsentiert, wenn der Wert von $p=2$ ist. Entsprechend wird
+								der Manhattan-Abstand durch den Wert von $p=1$ dargestellt</li>
+						</ul>
+					</aside>
+				</section>
+			</section>
+
+			<section>
+				<section>
+					<h3>Bestimmung der Genauigkeit</h3>
+				</section>
+				<section>
+					<img src="assets/train-and-test-datasets-in-machine-learning.png">
+
+					<aside class="notes">
+						<ul>
+							<li>Der Datensatz wird in zwei Teile geteilt: 1. Trainingsdatensatz und 2. Testdatensatz</li>
+							<li>Neue Datenpunkte mithilfe des Trainingsdatensatz klassifiziert</li>
+							<li>Die Klassenlabels werden vom Testdatensatz entfernt und werden somit zu neuen Datenpunkt, die
+								überprüft werden können</li>
+							<li>Um die Genauigkeit des k-NN-Algorithmus auf einem Testdatensatz zu bestimmen, wird eine
+								Genauigkeitsfunktion benötigt</li>
+						</ul>
+					</aside>
+				</section>
+
+				<section>
+					<h3>Bestimmung der Genauigkeit</h3>
+
+					$$
+					\text{accuracy}(y, \hat{y})=\frac{1}{n} \sum_{i=1}^{n} 1 \cdot (\hat{y}_i = y_i)
+					$$
+
+					<ul>
+						<li>$y$ sind die wahren Klassenlabels</li>
+						<li>$\hat{y}$ sind die vorhergesagten Klassenlabels</li>
+					</ul>
+
+					<aside class="notes">
+						<ul>
+							<li>Angenommen, wir haben die wahren Klassenlabels $y$ und die vorhergesagten Klassenlabels $\hat{y}$.
+							</li>
+							<li>Die Genauigkeitsfunktion zählt, wie viele Vorhersagen des Modells korrekt sind, indem sie die wahren
+								und vorhergesagten Klassenlabels vergleicht</li>
+							<li>Wenn die Vorhersage $\hat{y}_i$ mit dem tatsächlichen Wert $y_i$ übereinstimmt, wird der Ausdruck den
+								Wert 1 haben, andernfalls wird er den Wert 0 haben</li>
+							<li>Diese Werte werden nun summiert und durch die Anzahl der Klassenlabels geteilt, wodurch wir die
+								Genauigkeit erhalten</li>
+						</ul>
+					</aside>
+				</section>
+				<section>
+					$$y=(1,0) \quad \hat{y}=(0,0)$$
+
+					$$
+					\text{accuracy}(y, \hat{y})=\frac{1}{2} \sum_{i=1}^{2} 1 \cdot (\hat{y}_i = y_i)
+					$$
+					$$=\frac{1}{2} \Bigl( 1 \cdot (\hat{y}_1 = y_1) + 1 \cdot (\hat{y}_1 = y_1) \Bigr)$$
+					$$=\frac{1}{2} \Bigl( 1 \cdot 0 + 1 \cdot 1 \Bigr)=50\%$$
+
+					<aside class="notes">
+						<ul>
+							<li>Angenommen, wir haben die wahren Klassenlabels $y$ und die vorhergesagten Klassenlabels $\hat{y}$.
+							</li>
+							<li>Die Genauigkeitsfunktion zählt, wie viele Vorhersagen des Modells korrekt sind, indem sie die wahren
+								und vorhergesagten Klassenlabels vergleicht</li>
+							<li>Wenn die Vorhersage $\hat{y}_i$ mit dem tatsächlichen Wert $y_i$ übereinstimmt, wird der Ausdruck den
+								Wert 1 haben, andernfalls wird er den Wert 0 haben</li>
+							<li>Diese Werte werden nun summiert und durch die Anzahl der Klassenlabels geteilt, wodurch wir die
+								Genauigkeit erhalten</li>
+						</ul>
+					</aside>
+				</section>
+			</section>
+
+			<section>
+				<section>
+					<h3>Bestimmung des Paramters k</h3>
+
+					<aside class="notes">
+						<ul>
+							<li>Der Parameter k in k-NN dient dazu, die Anzahl der nächsten
+								Nachbarn festzulegen, die zur Bestimmung der Klasse eines gegebenen Abfragepunkts
+								herangezogen werden</li>
+						</ul>
+					</aside>
+				</section>
+				<section>
+					<img src="assets/knn_k_1.png">
+					<aside class="notes">
+						Wenn beispielsweise k = 1 ist, erfolgt die Zuordnung des Abfragepunkts zur Klasse seines einzigen
+						nächsten Nachbarn
+					</aside>
+				</section>
+				<section>
+					<img src="assets/knn_classified.png">
+					<aside class="notes">
+						Wenn beispielsweise k = 5 ist, erfolgt die Zuordnung des Abfragepunkts zu einer Klasse durch die am
+						häufigsten
+						vorkommenden Klasse der 5 nächsten Nachbarn
+					</aside>
+				</section>
+
+				<section>
+					<h3>Über- und Unteranpassung</h3>
+					<img src="assets/overfitting_2.png">
+
+					<aside class="notes">
+						<ul>
+							<li>Die Auswahl von k stellt eine Herausforderung dar, da unterschiedliche Werte zu Überanpassung
+								(Overfitting) oder Unteranpassung (Underfitting) führen können</li>
+							<li>Ein zu niedriger Wert für k führt zu Überanpassung (Overfitting), indem er zu sehr auf lokales
+								Rauschen reagiert</li>
+							<li>Ein zu hoher Wert für k zu Unteranpassung (Underfitting) führen kann, indem er zu stark vereinfacht
+							</li>
+							<li>Daten mit erhöhtem Ausreißerpotential oder Rauschen neigen dazu, von höheren Werten von k zu
+								profitieren</li>
+							<li>Die Auswahl eines geeigneten k-Wert erfordert somit eine gründliche Analyse der Datensätze und das
+								Ausprobieren von verschiedenen Werten für k</li>
+							<li>Es wird außerdem generell empfohlen, eine ungerade Zahl für k zu wählen, um "Unentschieden" bei der
+								Klassifizierung zu vermeiden und eine eindeutige Zuordnung zu ermöglichen </li>
+						</ul>
+					</aside>
+				</section>
+			</section>
+
+			<section>
+				<h3>Anwendungsbeispiel: Brustkrebs Diagnose mit k-NN</h3>
+
+				<aside class="notes">
+					https://colab.research.google.com/drive/1YXzSxf5vOF6sLWyw0UL49zBILEORUTi-
+				</aside>
+			</section>
+
+			<section>
+				<section>
+					<h3>Vor- und Nachteile von k-NN</h3>
+				</section>
+
+				<section data-auto-animate>
+					<div style="display: flex; flex-direction: row; justify-content: center; gap: 100px;">
+						<div>
+							<h3>Vorteile</h3>
+							<ul>
+							</ul>
+						</div>
+						<div>
+							<h3>Nachteile</h3>
+							<ul>
+							</ul>
+						</div>
+					</div>
+				</section>
+				<section data-auto-animate>
+					<div style="display: flex; flex-direction: row; justify-content: center; gap: 100px;">
+						<div>
+							<h3>Vorteile</h3>
+							<ul>
+								<li>Einfache Anwendung</li>
+							</ul>
+						</div>
+						<div>
+							<h3>Nachteile</h3>
+							<ul>
+							</ul>
+						</div>
+					</div>
+					<aside class="notes">
+						Einfache Anwendung: k-NN ist leicht zu erlernen, aber dennoch präzise, was ihn zu einem idealen
+						Einstieg für Schüler mit Interesse für Informatik, Mathematik und Datenwissenschaft macht.
+					</aside>
+				</section>
+				<section data-auto-animate>
+					<div style="display: flex; flex-direction: row; justify-content: center; gap: 100px;">
+						<div>
+							<h3>Vorteile</h3>
+							<ul>
+								<li>Einfache Anwendung</li>
+								<li>Einfache Anpassung</li>
+							</ul>
+						</div>
+						<div>
+							<h3>Nachteile</h3>
+							<ul>
+							</ul>
+						</div>
+					</div>
+					<aside class="notes">
+						Einfache Anpassung: Der Algorithmus passt sich problemlos an neue Daten an, da dieser
+						keine Trainingsphase besitzt. Jedoch sollte, wie in Kapitel 5 beschrieben, der Parameter k je
+						nach Datensatz angepasst werden.
+					</aside>
+				</section>
+				<section data-auto-animate>
+					<div style="display: flex; flex-direction: row; justify-content: center; gap: 100px;">
+						<div>
+							<h3>Vorteile</h3>
+							<ul>
+								<li>Einfache Anwendung</li>
+								<li>Einfache Anpassung</li>
+								<li>Wenige Parameter</li>
+							</ul>
+						</div>
+						<div>
+							<h3>Nachteile</h3>
+							<ul>
+							</ul>
+						</div>
+					</div>
+					<aside class="notes">
+						Wenige Parameter: Mit nur einem Parameter k und einer Distanzmetrik minimiert k-NN
+						den Aufwand für Parameter im Vergleich zu komplexeren maschinellen Lernalgorithmen
+					</aside>
+				</section>
+				<section data-auto-animate>
+					<div style="display: flex; flex-direction: row; justify-content: center; gap: 100px;">
+						<div>
+							<h3>Vorteile</h3>
+							<ul>
+								<li>Einfache Anwendung</li>
+								<li>Einfache Anpassung</li>
+								<li>Wenige Parameter</li>
+							</ul>
+						</div>
+						<div>
+							<h3>Nachteile</h3>
+							<ul>
+								<li>Skalierungsprobleme</li>
+							</ul>
+						</div>
+					</div>
+					<aside class="notes">
+						Skalierungsprobleme: Da dieser Algorithmus den ganzen Trainingsdatensatz bei jeder Klas-
+						sifizierung benötigt, wird bei großen Datensätzen viel Arbeitspeicher und Speicherplatz ver-
+						wendet, was die Kosten in die Höhe treibt
+					</aside>
+				</section>
+				<section data-auto-animate>
+					<div style="display: flex; flex-direction: row; justify-content: center; gap: 100px;">
+						<div>
+							<h3>Vorteile</h3>
+							<ul>
+								<li>Einfache Anwendung</li>
+								<li>Einfache Anpassung</li>
+								<li>Wenige Parameter</li>
+							</ul>
+						</div>
+						<div>
+							<h3>Nachteile</h3>
+							<ul>
+								<li>Skalierungsprobleme</li>
+								<li>Fluch der Dimensionalität</li>
+							</ul>
+						</div>
+					</div>
+					<aside class="notes">
+						Fluch der Dimensionalität: Der k-NN-Algorithmus scheint dem „Fluch der Dimension-
+						alität“ zu unterliegen. Dies liegt daran, dass die Datenpunkte in einem hochdimensionalen
+						Raum tendenziell weiter voneinander entfernt sind und es daher schwieriger wird, sinnvolle
+						Entfernungen oder Ähnlichkeiten zwischen den Punkten zu definieren. Dies äußert sich in
+						einer eingeschränkten Leistungsfähigkeit, wenn mit hochdimensionalen Daten als Eingabe
+						gearbeitet wird.
+					</aside>
+				</section>
+				<section data-auto-animate>
+					<div style="display: flex; flex-direction: row; justify-content: center; gap: 100px;">
+						<div>
+							<h3>Vorteile</h3>
+							<ul>
+								<li>Einfache Anwendung</li>
+								<li>Einfache Anpassung</li>
+								<li>Wenige Parameter</li>
+							</ul>
+						</div>
+						<div>
+							<h3>Nachteile</h3>
+							<ul>
+								<li>Skalierungsprobleme</li>
+								<li>Fluch der Dimensionalität</li>
+								<li>Über- und Unteranpassung</li>
+							</ul>
+						</div>
+					</div>
+					<aside class="notes">
+						Überanpassung und Unteranpassung: Zu niedrige bzw. zu hohe Werte für den Parameter
+						k können zur Überanpassung bzw. Unteranpassung führen, was die Genauigkeit des Modells
+						einschränkt
+					</aside>
+				</section>
+				<section data-auto-animate>
+					<div style="display: flex; flex-direction: row; justify-content: center; gap: 100px;">
+						<div>
+							<h3>Vorteile</h3>
+							<ul>
+								<li>Einfache Anwendung</li>
+								<li>Einfache Anpassung</li>
+								<li>Wenige Parameter</li>
+							</ul>
+						</div>
+						<div>
+							<h3>Nachteile</h3>
+							<ul>
+								<li>Skalierungsprobleme</li>
+								<li>Fluch der Dimensionalität</li>
+								<li>Über- und Unteranpassung</li>
+								<li>Unterlegenheit</li>
+							</ul>
+						</div>
+					</div>
+					<aside class="notes">
+						Unterlegenheit: In manchen Situationen ist der k-NN Algorithmus anderen maschinellen
+						Lernalgorithmen unterlegen, wie bspw. neuronalen Netzwerken.
+					</aside>
+				</section>
+			</section>
+
+			<section>
+				<h3>Fazit</h3>
+
+				<aside class="notes">
+					<ul>
+						<li>k-NN stellt eine simple, aber dennoch effektive Methode zur Klassifizierung dar</li>
+						<li>Stärken liegen in seiner intuitiven Natur sowie seiner einfachen Anwendung und Anpassung</li>
+						<li>Jedoch sollte die Wahl für den Parameter k und die Distanzmetrik mit Bedacht getroffen werden</li>
+						<li>Alles in allem kann man behaupten, dass der k-Nearest-Neighbors Algorithmus eine gute Wahl für
+							Klassifikationsprobleme ist, was durch das Anwendungsbeispiel erfolgreich veranschaulicht wurde</li>
+					</ul>
+				</aside>
+			</section>
+
+			<section>
+				<h3>Ende</h3>
+				<p>Vielen Dank für Ihre Aufmerksamkeit</p>
+			</section>
+
+			<section>
+				<h3>Quellen</h3>
+				<ul>
+					<li>https://www.datarevenue.com/en-blog/what-is-machine-learning-a-visual-explanation</li>
+					<li>https://www.geeksforgeeks.org/underfitting-and-overfitting-in-machine-learning/</li>
+				</ul>
+			</section>
 		</div>
+	</div>
 
-		<script src="dist/reveal.js"></script>
-		<script src="plugin/notes/notes.js"></script>
-		<script src="plugin/markdown/markdown.js"></script>
-		<script src="plugin/highlight/highlight.js"></script>
-		<script>
-			// More info about initialization & config:
-			// - https://revealjs.com/initialization/
-			// - https://revealjs.com/config/
-			Reveal.initialize({
-				hash: true,
+	<script src="dist/reveal.js"></script>
+	<script src="plugin/notes/notes.js"></script>
+	<script src="plugin/markdown/markdown.js"></script>
+	<script src="plugin/highlight/highlight.js"></script>
+	<script src="plugin/math/math.js"></script>
+	<script>
+		// More info about initialization & config:
+		// - https://revealjs.com/initialization/
+		// - https://revealjs.com/config/
+		Reveal.initialize({
+			hash: true,
 
-				// Learn about plugins: https://revealjs.com/plugins/
-				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
-			});
-		</script>
-	</body>
+			// Learn about plugins: https://revealjs.com/plugins/
+			plugins: [RevealMarkdown, RevealHighlight, RevealNotes, RevealMath.KaTeX]
+		});
+	</script>
+</body>
+
 </html>
